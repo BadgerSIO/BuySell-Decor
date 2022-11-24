@@ -2,7 +2,21 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    fontFamily: {
+      headings: "'Playfair Display', serif;",
+    },
+    container: {
+      center: true,
+      padding: "2rem",
+    },
+    extend: {
+      dropShadow: {
+        themeshadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+      },
+      backgroundImage: {
+        "hero-pattern": "url('/src/assets/images/homebg.webp')",
+      },
+    },
   },
   plugins: [require("daisyui")],
   daisyui: {

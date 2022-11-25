@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 
+import { MdLogout, MdOutlineSpaceDashboard } from "react-icons/md";
+import { AuthContext } from "../../context/AuthProvider";
 const Header = () => {
+  const { user, logout } = useContext(AuthContext);
   let activeClassName =
     "bg-accent text-primary rounded-md py-2 px-3 font-semibold capitalize lg:mr-2 mb-2 lg:mb-0";
   let notActiveClassName =
@@ -64,28 +67,42 @@ const Header = () => {
         </div>
         <div className="navbar-end">
           <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full">
-                <img src="https://placeimg.com/80/80/people" alt="" />
-              </div>
-            </label>
-            <ul
-              tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <li>
-                <Link className="justify-between" href="/">
-                  Profile
-                  <span className="badge">New</span>
-                </Link>
-              </li>
-              <li>
-                <Link>Settings</Link>
-              </li>
-              <li>
-                <Link>Logout</Link>
-              </li>
-            </ul>
+            {user?.email ? (
+              <>
+                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                  <div className="w-10 rounded-full">
+                    <img src={user?.photoURL} alt="" />
+                  </div>
+                </label>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+                >
+                  <li>
+                    <Link className="justify-start" href="/">
+                      <MdOutlineSpaceDashboard /> Dashboard
+                    </Link>
+                  </li>
+
+                  <li onClick={logout}>
+                    <button>
+                      <MdLogout /> Logout
+                    </button>
+                  </li>
+                </ul>
+              </>
+            ) : (
+              <>
+                <li className="list-none">
+                  <Link
+                    to="/login"
+                    className="bg-primary py-2 px-3 text-white rounded"
+                  >
+                    Login
+                  </Link>
+                </li>
+              </>
+            )}
           </div>
         </div>
       </div>

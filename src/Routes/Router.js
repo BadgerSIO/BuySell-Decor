@@ -1,5 +1,7 @@
 import Dashboard from "../layouts/Dashboard/Dashboard";
 import Addproduct from "../pages/Addproduct/Addproduct";
+import AllBuyers from "../pages/AllBuyers/AllBuyers";
+import AllSellers from "../pages/AllSellers/AllSellers";
 import Blog from "../pages/Blog/Blog";
 import Home from "../pages/Home/Home";
 import Login from "../pages/LoginRegister/Login/Login";
@@ -8,6 +10,7 @@ import Register from "../pages/LoginRegister/Register/Register";
 import MyOrders from "../pages/MyOrders/MyOrders";
 import NotFound from "../shared/NotFound/NotFound";
 import PrivateRoute from "./PrivateRoute";
+import SellerRoute from "./SellerRoute";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Main } = require("../layouts/Main/Main");
@@ -55,7 +58,27 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/addProduct",
-        element: <Addproduct></Addproduct>,
+        element: (
+          <SellerRoute>
+            <Addproduct></Addproduct>
+          </SellerRoute>
+        ),
+      },
+      {
+        path: "/dashboard/allsellers",
+        element: (
+          <SellerRoute>
+            <AllSellers></AllSellers>
+          </SellerRoute>
+        ),
+      },
+      {
+        path: "/dashboard/allbuyers",
+        element: (
+          <SellerRoute>
+            <AllBuyers></AllBuyers>
+          </SellerRoute>
+        ),
       },
     ],
   },

@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { FaPlus } from "react-icons/fa";
+import Loader from "../../shared/Loader/Loader";
 import Titles from "../../utilities/Titles";
 
 const Addproduct = () => {
@@ -22,6 +23,9 @@ const Addproduct = () => {
   const addProduct = (data) => {
     console.log(data);
   };
+  if (isLoading) {
+    return <Loader></Loader>;
+  }
   return (
     <div>
       <Titles>Add Product</Titles>

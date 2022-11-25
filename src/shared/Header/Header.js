@@ -35,7 +35,6 @@ const Header = () => {
   );
   const location = useLocation();
   let pathname = location.pathname.split("/")[1];
-  console.log(pathname);
   return (
     <div className=" border-b border-gray-100 h-[8vh]">
       <div className="navbar bg-base-100">
@@ -74,8 +73,11 @@ const Header = () => {
         <div className="navbar-end">
           <div className="dropdown dropdown-end">
             {user?.email ? (
-              <div className="">
-                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div>
+                <label
+                  tabIndex={0}
+                  className="btn btn-ghost btn-circle avatar relative"
+                >
                   <div className="w-10 rounded-full">
                     <img src={user?.photoURL} alt="" />
                   </div>
@@ -104,7 +106,11 @@ const Header = () => {
                     <MdOutlineDashboardCustomize className="text-3xl cursor-pointer" />
                   </label>
                 ) : (
-                  <></>
+                  <>
+                    <ul className="hidden lg:inline-block absolute top-2/4 -translate-y-2/4">
+                      <li>{user.displayName.split(" ")[0]}</li>
+                    </ul>
+                  </>
                 )}
               </div>
             ) : (
@@ -112,7 +118,7 @@ const Header = () => {
                 <li className="list-none">
                   <Link
                     to="/login"
-                    className="bg-primary py-2 px-3 text-white rounded"
+                    className="bg-primary py-1 px-2 text-white rounded"
                   >
                     Login
                   </Link>

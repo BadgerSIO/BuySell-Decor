@@ -7,7 +7,7 @@ const Category = ({ category }) => {
       <figure className="overflow-hidden">
         <img
           src={image}
-          alt="Shoes"
+          alt={name}
           className="group-hover:scale-110 transition-all"
         />
       </figure>

@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider";
 
 const Login = () => {
   const { error, setError, login } = useContext(AuthContext);
+  const navigate = useNavigate();
   setError("");
   const {
     register,
@@ -13,7 +15,10 @@ const Login = () => {
   } = useForm();
   const handleLogin = (data) => {
     login(data.email, data.password)
-      .then((res) => console.log(res))
+      .then((res) => {
+        toast.success(`Welcome Back ${res.user.displayName.split(" ")[0]}`);
+        navigate("/");
+      })
       .catch((err) => setError(err));
   };
   return (
@@ -25,7 +30,7 @@ const Login = () => {
           <input
             type="email"
             id="email"
-            className="input input-bordered w-full mt-1 rounded-none"
+            className="input input-bordered w-full mt-1 focus:outline-primary/30 focus:border-primary/30 rounded-none"
             {...register("email", { required: "Email is required" })}
           />
           {errors.email && (
@@ -39,7 +44,7 @@ const Login = () => {
           <input
             type="password"
             id="password"
-            className="input input-bordered w-full mt-1 rounded-none"
+            className="input input-bordered w-full mt-1 focus:outline-primary/30 focus:border-primary/30 rounded-none"
             {...register("password", { required: "Password is required" })}
           />
           {errors.password && (
@@ -48,7 +53,7 @@ const Login = () => {
             </p>
           )}
         </div>
-        <button className="text-lg capitalize w-full  border border-gray-100 py-2 bg-accent hover:bg-accent/50 inline-block mt-5">
+        <button className="text-lg capitalize w-full text-white  border border-gray-100 py-2 bg-primary hover:bg-primary/90 inline-block mt-5">
           Login
         </button>
       </form>

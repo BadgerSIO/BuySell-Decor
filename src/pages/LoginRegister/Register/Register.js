@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
@@ -11,7 +11,6 @@ const Register = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm();
   const handleRegister = (data) => {
     console.log(data);
@@ -19,17 +18,31 @@ const Register = () => {
       displayName: data.name,
       photoURL: data.photoURL,
     };
+    const infoForDb = { ...data };
+    delete infoForDb.password;
     signup(data.email, data.password, profile)
       .then(async (res) => {
         console.log(res);
         setError("");
-        toast.success("User added succesfully");
-        // addUserToDB(data.displayName, data.email);
-        navigate("/");
+        addUserToDB(infoForDb);
       })
       .catch((err) => setError(err));
-    const infoForDb = { ...data };
-    console.log(infoForDb);
+
+    const addUserToDB = (userInfo) => {
+      fetch(`http://localhost:5000/users`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(userInfo),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          toast.success("User added succesfully");
+          navigate("/");
+        });
+    };
   };
   return (
     <>
@@ -38,7 +51,7 @@ const Register = () => {
           <h1 className="text-2xl mb-5 font-semibold">Register</h1>
           <div>
             <label htmlFor="role">Account Type: </label>
-            <select {...register("role")}>
+            <select {...register("role")} className="focus:outline-none ">
               <option value="buyer">Buyer</option>
               <option value="seller">Seller</option>
             </select>
@@ -49,7 +62,7 @@ const Register = () => {
           <input
             type="name"
             id="name"
-            className="input input-bordered w-full mt-1 rounded-none"
+            className="input input-bordered w-full focus:outline-primary/30 focus:border-primary/30 mt-1 rounded-none"
             {...register("name", { required: "name is required" })}
           />
           {errors.email && (
@@ -63,7 +76,7 @@ const Register = () => {
           <input
             type="email"
             id="email"
-            className="input input-bordered w-full mt-1 rounded-none"
+            className="input input-bordered w-full focus:outline-primary/30 focus:border-primary/30 mt-1 rounded-none"
             {...register("email", { required: "Email is required" })}
           />
           {errors.email && (
@@ -77,7 +90,7 @@ const Register = () => {
           <input
             type="password"
             id="password"
-            className="input input-bordered w-full mt-1 rounded-none"
+            className="input input-bordered w-full focus:outline-primary/30 focus:border-primary/30 mt-1 rounded-none"
             {...register("password", { required: "Password is required" })}
           />
           {errors.password && (
@@ -91,7 +104,7 @@ const Register = () => {
           <input
             type="photoURL"
             id="photoURL"
-            className="input input-bordered w-full mt-1 rounded-none"
+            className="input input-bordered w-full focus:outline-primary/30 focus:border-primary/30 mt-1 rounded-none"
             {...register("photoURL", { required: "photoURL is required" })}
           />
           {errors.photoURL && (
@@ -100,7 +113,7 @@ const Register = () => {
             </p>
           )}
         </div>
-        <button className="text-lg capitalize w-full  border border-gray-100 py-2 bg-accent hover:bg-accent/50 inline-block mt-5">
+        <button className="text-lg capitalize w-full text-white  border border-gray-100 py-2 bg-primary hover:bg-primary/90 inline-block mt-5">
           Register
         </button>
       </form>

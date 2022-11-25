@@ -1,7 +1,10 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
-
-import { MdLogout, MdOutlineSpaceDashboard } from "react-icons/md";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import {
+  MdLogout,
+  MdOutlineDashboardCustomize,
+  MdOutlineSpaceDashboard,
+} from "react-icons/md";
 import { AuthContext } from "../../context/AuthProvider";
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
@@ -30,8 +33,11 @@ const Header = () => {
       })}
     </>
   );
+  const location = useLocation();
+  let pathname = location.pathname.split("/")[1];
+  console.log(pathname);
   return (
-    <div className="container border-b border-gray-100 h-[7vh]">
+    <div className=" border-b border-gray-100 h-[8vh]">
       <div className="navbar bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
@@ -62,13 +68,13 @@ const Header = () => {
             <span className="text-primary">BuySell</span> Decor
           </Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
+        <div className="navbar-center hidden lg:flex ">
           <ul className="menu menu-horizontal p-0">{navlinks}</ul>
         </div>
         <div className="navbar-end">
           <div className="dropdown dropdown-end">
             {user?.email ? (
-              <>
+              <div className="">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 rounded-full">
                     <img src={user?.photoURL} alt="" />
@@ -79,7 +85,7 @@ const Header = () => {
                   className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
                 >
                   <li>
-                    <Link className="justify-start" href="/">
+                    <Link className="justify-start" to="/dashboard">
                       <MdOutlineSpaceDashboard /> Dashboard
                     </Link>
                   </li>
@@ -90,7 +96,17 @@ const Header = () => {
                     </button>
                   </li>
                 </ul>
-              </>
+                {pathname === "dashboard" ? (
+                  <label
+                    htmlFor="dashboard"
+                    className=" lg:hidden inline-block "
+                  >
+                    <MdOutlineDashboardCustomize className="text-3xl cursor-pointer" />
+                  </label>
+                ) : (
+                  <></>
+                )}
+              </div>
             ) : (
               <>
                 <li className="list-none">

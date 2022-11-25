@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../context/AuthProvider";
 
 const Register = () => {
-  const [error, setError] = useState("");
+  const { signup, error, setError } = useContext(AuthContext);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -12,6 +15,21 @@ const Register = () => {
   } = useForm();
   const handleRegister = (data) => {
     console.log(data);
+    const profile = {
+      displayName: data.name,
+      photoURL: data.photoURL,
+    };
+    signup(data.email, data.password, profile)
+      .then(async (res) => {
+        console.log(res);
+        setError("");
+        toast.success("User added succesfully");
+        // addUserToDB(data.displayName, data.email);
+        navigate("/");
+      })
+      .catch((err) => setError(err));
+    const infoForDb = { ...data };
+    console.log(infoForDb);
   };
   return (
     <>

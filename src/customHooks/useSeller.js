@@ -10,7 +10,8 @@ const useSeller = (email) => {
         .then((data) => {
           setIsSeller(data.isSeller);
           setIsSellerLoading(false);
-        });
+        })
+        .catch((err) => console.log(err));
     }
   }, [email]);
   return [isSeller, isSellerLoading];

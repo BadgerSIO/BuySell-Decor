@@ -1,11 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
+import useToken from "../../customHooks/useToken";
 const LoginRegister = () => {
-  const { googleSignUp } = useContext(AuthContext);
+  const [userEmail, setUserEmail] = useState("");
+  const [token] = useToken(userEmail);
+  let location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
   const navigate = useNavigate();
+  if (token) {
+    navigate(from, { replace: true });
+  }
+  const { googleSignUp } = useContext(AuthContext);
   const handleGoogle = () => {
     googleSignUp().then((res) => {
       const user = res.user;
@@ -17,6 +25,7 @@ const LoginRegister = () => {
         role: "buyer",
       };
       addUserToDB(infoForDb);
+      setUserEmail(user.email);
     });
   };
   const addUserToDB = (userInfo) => {
@@ -31,11 +40,9 @@ const LoginRegister = () => {
       .then((data) => {
         if (data.userExist) {
           toast.success(`Welcome Back ${userInfo.name}`);
-          navigate("/");
           return;
         }
         toast.success("User added succesfully");
-        navigate("/");
       });
   };
   return (

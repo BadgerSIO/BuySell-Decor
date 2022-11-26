@@ -20,7 +20,7 @@ const Categories = () => {
     <div>
       <div className="container py-8 md:py-16 lg:py-20">
         <Titles>Categories</Titles>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 my-5">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 my-5">
           {categories.map((category) => (
             <Category key={category._id} category={category}></Category>
           ))}

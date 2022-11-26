@@ -35,6 +35,7 @@ const Header = () => {
   );
   const location = useLocation();
   let pathname = location.pathname.split("/")[1];
+
   return (
     <div className=" border-b border-gray-100 h-[8vh]">
       <div className="navbar bg-base-100">
@@ -107,8 +108,8 @@ const Header = () => {
                   </label>
                 ) : (
                   <>
-                    <ul className="hidden lg:inline-block absolute top-2/4 -translate-y-2/4">
-                      <li>{user.displayName.split(" ")[0]}</li>
+                    <ul className="hidden xl:inline-block absolute top-2/4 -translate-y-2/4">
+                      <li>{user?.displayName?.split(" ")[0]}</li>
                     </ul>
                   </>
                 )}

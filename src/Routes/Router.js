@@ -8,6 +8,7 @@ import Login from "../pages/LoginRegister/Login/Login";
 import LoginRegister from "../pages/LoginRegister/LoginRegister";
 import Register from "../pages/LoginRegister/Register/Register";
 import MyOrders from "../pages/MyOrders/MyOrders";
+import MyProducts from "../pages/MyProducts/MyProducts";
 import NotFound from "../shared/NotFound/NotFound";
 import PrivateRoute from "./PrivateRoute";
 import SellerRoute from "./SellerRoute";
@@ -61,6 +62,14 @@ const router = createBrowserRouter([
         element: (
           <SellerRoute>
             <Addproduct></Addproduct>
+          </SellerRoute>
+        ),
+      },
+      {
+        path: "/dashboard/myProducts",
+        element: (
+          <SellerRoute>
+            <MyProducts></MyProducts>
           </SellerRoute>
         ),
       },

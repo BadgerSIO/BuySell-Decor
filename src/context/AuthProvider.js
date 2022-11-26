@@ -43,7 +43,7 @@ const AuthProvider = ({ children }) => {
   };
   //logout
   const logout = () => {
-    // localStorage.removeItem("accessToken");
+    localStorage.removeItem("accessToken");
     return signOut(auth);
   };
   useEffect(() => {

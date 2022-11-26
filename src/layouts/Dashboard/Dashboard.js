@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { FaUsers, FaUserTag } from "react-icons/fa";
+import { FaBoxes, FaUsers, FaUserTag } from "react-icons/fa";
 import { MdAddBusiness, MdShoppingCart } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
@@ -54,6 +54,17 @@ const Dashboard = () => {
                     }
                   >
                     <MdAddBusiness className="md:text-xl" /> Add A product
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/myProducts"
+                    end
+                    className={({ isActive }) =>
+                      isActive ? activeClassName : notActiveClassName
+                    }
+                  >
+                    <FaBoxes className="md:text-xl" /> My products
                   </NavLink>
                 </li>
               </>

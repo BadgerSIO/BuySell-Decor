@@ -1,12 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider";
+import useToken from "../../../customHooks/useToken";
 
 const Login = () => {
-  const { error, setError, login } = useContext(AuthContext);
+  const [userEmail, setUserEmail] = useState("");
+  const [token] = useToken(userEmail);
+  let location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
   const navigate = useNavigate();
+  if (token) {
+    navigate(from, { replace: true });
+  }
+  const { error, setError, login } = useContext(AuthContext);
   setError("");
   const {
     register,
@@ -16,8 +24,10 @@ const Login = () => {
   const handleLogin = (data) => {
     login(data.email, data.password)
       .then((res) => {
-        toast.success(`Welcome Back ${res.user.displayName.split(" ")[0]}`);
-        navigate("/");
+        if (res) {
+          toast.success(`Welcome Back ${res.user.displayName.split(" ")[0]}`);
+          setUserEmail(res.user.email);
+        }
       })
       .catch((err) => setError(err));
   };

@@ -23,6 +23,7 @@ const LoginRegister = () => {
         email: user.email,
         photoURL: user.photoURL,
         role: "buyer",
+        verified: false,
       };
       addUserToDB(infoForDb);
       setUserEmail(user.email);

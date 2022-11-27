@@ -20,6 +20,7 @@ const Register = () => {
     };
     const infoForDb = { ...data };
     delete infoForDb.password;
+    infoForDb["verified"] = false;
     signup(data.email, data.password, profile)
       .then(async (res) => {
         console.log(res);

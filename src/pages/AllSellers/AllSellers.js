@@ -1,12 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../context/AuthProvider";
 import ConfirmationModal from "../../shared/ConfirmationModal/ConfirmationModal";
 import Loader from "../../shared/Loader/Loader";
 import Titles from "../../utilities/Titles";
 
 const AllSellers = () => {
   const [current, setCurrent] = useState(null);
+  const { user, loading } = useContext(AuthContext);
   const {
     data: sellers,
     isLoading,
@@ -39,7 +41,20 @@ const AllSellers = () => {
         refetch();
       });
   };
-  if (isLoading) {
+  const handleVerify = (id) => {
+    fetch(`http://localhost:5000/user/${id}?email=${user?.email}`, {
+      method: "PUT",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        refetch();
+      });
+  };
+  if (isLoading || loading) {
     return <Loader></Loader>;
   }
   return (
@@ -71,10 +86,21 @@ const AllSellers = () => {
                       <label
                         onClick={() => setCurrent(seller)}
                         htmlFor="confirmation-modal"
-                        className="btn btn-xs md:btn-sm bg-[#F1F5F9] hover:bg-red-500 border-0 text-black hover:text-white"
+                        className="btn btn-xs bg-accent hover:bg-red-500 border-0 text-black hover:text-white mr-2"
                       >
                         delete
                       </label>
+
+                      <button
+                        onClick={() => handleVerify(seller._id)}
+                        className={`btn ${
+                          seller?.verified
+                            ? "bg-green-600 text-white border-none hover:bg-green-400"
+                            : "bg-green-500 text-white border-none hover:bg-green-400"
+                        } btn-xs `}
+                      >
+                        {seller?.verified ? " verfied" : " verfiy"}
+                      </button>
                     </td>
                   </tr>
                 ))}

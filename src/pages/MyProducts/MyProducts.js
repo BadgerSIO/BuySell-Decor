@@ -40,7 +40,7 @@ const MyProducts = () => {
       });
   };
   const handleAdvert = (id) => {
-    fetch(`http://localhost:5000/product/${id}?email=${user.email}`, {
+    fetch(`http://localhost:5000/product/${id}?email=${user?.email}`, {
       method: "PUT",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -99,7 +99,7 @@ const MyProducts = () => {
                       <label
                         onClick={() => setCurrent(product)}
                         htmlFor="confirmation-modal"
-                        className="btn btn-xs  bg-[#F1F5F9] hover:bg-red-500 border-0 text-black hover:text-white mr-2"
+                        className="btn btn-xs  bg-accent hover:bg-red-500 border-0 text-black hover:text-white mr-2"
                       >
                         delete
                       </label>

@@ -1,7 +1,8 @@
 import React from "react";
 import { FaLongArrowAltRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const Category = ({ category }) => {
-  const { name, image } = category;
+  const { name, image, _id } = category;
   return (
     <div className="card w-full  shadow-xl image-full group">
       <figure className="overflow-hidden">
@@ -16,9 +17,12 @@ const Category = ({ category }) => {
           {name}
         </h2>
         <div className="card-actions justify-end">
-          <button className="md:btn md:btn-primary text-sm md:text-base flex items-center bg-primary p-2  rounded ">
+          <Link
+            to={`/category/${_id}`}
+            className="md:btn md:btn-primary text-sm md:text-base flex items-center bg-primary p-2  rounded "
+          >
             See More <FaLongArrowAltRight className="ml-1" />
-          </button>
+          </Link>
         </div>
       </div>
     </div>

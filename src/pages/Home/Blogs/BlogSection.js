@@ -20,7 +20,7 @@ const BlogSection = () => {
     <section className="bg-accent py-8 md:py-16 lg:py-20">
       <div className="container">
         <Titles>blogs</Titles>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-10 mt-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 lg:gap-10 mt-5">
           {blogs.map((blog, i) => (
             <BlogSecCard goto={i} key={blog._id} blog={blog}></BlogSecCard>
           ))}

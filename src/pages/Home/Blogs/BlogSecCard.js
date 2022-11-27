@@ -14,9 +14,9 @@ const BlogSecCard = ({ blog, goto }) => {
       </figure>
       <div className="card-body">
         <h2 className="card-title">{question}</h2>
-        <p>If a dog chews shoes whose shoes does he choose?</p>
-        <div className="card-actions justify-end">
-          <Link to={`/blog`} className="btn btn-primary btn-outline">
+        <p>{ans.length > 100 ? ans.slice(0, 100) + "..." : ans}</p>
+        <div className="card-actions justify-end mt-3">
+          <Link to={`/blog`} className="btn btn-primary btn-outline btn-sm">
             Read More
           </Link>
         </div>

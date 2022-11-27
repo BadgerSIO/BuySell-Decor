@@ -1,6 +1,6 @@
 import React from "react";
 
-const ConfirmationModal = ({ user, deleteCurrent }) => {
+const ConfirmationModal = ({ current, deleteCurrent }) => {
   return (
     <>
       {/* The button to open modal */}
@@ -11,7 +11,7 @@ const ConfirmationModal = ({ user, deleteCurrent }) => {
         <div className="modal-box">
           <h3 className="font-bold text-lg">
             Are you sure you want to remove
-            <span className="block text-primary">{user.name}</span>
+            <span className="block text-primary">{current.name}</span>
           </h3>
           <p className="py-4 text-red-500">
             Be aware. This action is ireversable
@@ -24,7 +24,7 @@ const ConfirmationModal = ({ user, deleteCurrent }) => {
               No
             </label>
             <button
-              onClick={() => deleteCurrent(user)}
+              onClick={() => deleteCurrent(current)}
               className="btn  btn-sm btn-error"
             >
               Yes

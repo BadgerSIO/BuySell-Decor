@@ -17,8 +17,8 @@ const Categories = () => {
     return <Loader></Loader>;
   }
   return (
-    <div>
-      <div className="py-8 md:py-16 lg:py-20">
+    <div className="py-8 md:py-16 lg:py-20">
+      <div className=" container">
         <Titles>Categories</Titles>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 my-5">
           {categories.map((category) => (

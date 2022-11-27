@@ -23,8 +23,8 @@ const MyProducts = () => {
       return data;
     },
   });
-  const deleteCurrent = (ctuser) => {
-    fetch(`http://localhost:5000/deleteuser/${ctuser._id}`, {
+  const deleteCurrent = (product) => {
+    fetch(`http://localhost:5000/product/${product._id}?email=${user.email}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -34,8 +34,21 @@ const MyProducts = () => {
       .then((data) => {
         if (data.deletedCount > 0) {
           setCurrent(null);
-          toast.success(`Successfully removed ${ctuser.name}`);
+          toast.success(`Successfully removed ${product.name}`);
         }
+        refetch();
+      });
+  };
+  const handleAdvert = (id) => {
+    fetch(`http://localhost:5000/product/${id}?email=${user.email}`, {
+      method: "PUT",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
         refetch();
       });
   };
@@ -86,17 +99,22 @@ const MyProducts = () => {
                       <label
                         onClick={() => setCurrent(product)}
                         htmlFor="confirmation-modal"
-                        className="btn btn-xs md:btn-sm bg-[#F1F5F9] hover:bg-red-500 border-0 text-black hover:text-white mr-2"
+                        className="btn btn-xs  bg-[#F1F5F9] hover:bg-red-500 border-0 text-black hover:text-white mr-2"
                       >
                         delete
                       </label>
-                      {product?.advert ? (
-                        <button className="btn btn-secondary btn-xs md:btn-sm">
-                          Dont Advert
-                        </button>
+                      {product?.sold ? (
+                        <></>
                       ) : (
-                        <button className="btn btn-secondary btn-xs md:btn-sm">
-                          Advert
+                        <button
+                          onClick={() => handleAdvert(product._id)}
+                          className={`btn ${
+                            product?.advert
+                              ? "btn-primary"
+                              : "bg-green-500 text-white border-none hover:bg-green-400"
+                          } btn-xs `}
+                        >
+                          {product?.advert ? "Stop Advert" : "Start Advert"}
                         </button>
                       )}
                     </td>
@@ -106,7 +124,7 @@ const MyProducts = () => {
             </table>
             {current && (
               <ConfirmationModal
-                user={current}
+                current={current}
                 deleteCurrent={deleteCurrent}
               ></ConfirmationModal>
             )}

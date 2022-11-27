@@ -16,7 +16,7 @@ const Dashboard = () => {
     "hover:bg-[#F1F5F9] rounded-md capitalize  m-2 md:m-3 ";
   return (
     <div>
-      <div className="drawer drawer-mobile bg-[#F1F5F9]  ">
+      <div className="drawer drawer-mobile bg-accent  ">
         <input id="dashboard" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content ">
           {/* <!-- Page content here --> */}

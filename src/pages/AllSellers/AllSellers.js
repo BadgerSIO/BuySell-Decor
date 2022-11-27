@@ -82,7 +82,7 @@ const AllSellers = () => {
             </table>
             {current && (
               <ConfirmationModal
-                user={current}
+                current={current}
                 deleteCurrent={deleteCurrent}
               ></ConfirmationModal>
             )}

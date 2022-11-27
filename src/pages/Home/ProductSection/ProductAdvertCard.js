@@ -30,7 +30,7 @@ const ProductAdvertCard = ({ product }) => {
           ) : (
             <></>
           )}
-          <p>
+          <p className={sellerVerified ? "text-right" : "text-left"}>
             Condition: <span className="font-bold capitalize">{condition}</span>
           </p>
         </div>

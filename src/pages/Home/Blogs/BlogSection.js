@@ -9,9 +9,7 @@ const BlogSection = () => {
   const { data: blogs, isLoading } = useQuery({
     queryKey: ["blogs"],
     queryFn: async () => {
-      // const res = await fetch(`http://localhost:5000/blogs`);
       const res = await axios.get("/blogs");
-
       return res.data;
     },
   });

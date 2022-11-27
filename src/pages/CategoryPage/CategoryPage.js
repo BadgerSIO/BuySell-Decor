@@ -4,7 +4,7 @@ import Titles from "../../utilities/Titles";
 import CategoryProduct from "./CategoryProduct";
 
 const CategoryPage = () => {
-  const data = useLoaderData();
+  const data = useLoaderData().data;
   const [products, setProducts] = useState(data);
 
   return (

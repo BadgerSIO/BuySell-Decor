@@ -14,7 +14,8 @@ Buysell website
 - reacticons are used as icon library
 - daisyUI is used as component library
 - firebase is used for the authentication system. With this user can login or signup by 3 methods.
-- react-photo-view is used for image full page animation.
+- React query is used for fetching data
+- Axios is used for fetching data
 - For serverside i have used express js and versel for hosting.
 - For client side hosting i have used firebase.
 - dotenv package is used on the serverside to secure credentials
@@ -23,5 +24,5 @@ Buysell website
 
 ### Admin pass
 
-email: ""
-pass: ""
+email: "user1@gmail.com"
+pass: "user1@gmail.com"

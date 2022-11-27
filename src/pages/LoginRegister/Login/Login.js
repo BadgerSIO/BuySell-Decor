@@ -25,7 +25,9 @@ const Login = () => {
     login(data.email, data.password)
       .then((res) => {
         if (res) {
-          toast.success(`Welcome Back ${res.user.displayName.split(" ")[0]}`);
+          toast.success(
+            `Welcome Back ${res?.user?.displayName?.split(" ")[0]}`
+          );
           setUserEmail(res.user.email);
         }
       })

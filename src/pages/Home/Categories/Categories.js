@@ -17,7 +17,7 @@ const Categories = () => {
     return <Loader></Loader>;
   }
   return (
-    <div className="py-8 md:py-16 lg:py-20">
+    <section id="categories" className="py-8 md:py-16 lg:py-20">
       <div className=" container">
         <Titles>Categories</Titles>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 my-5">
@@ -26,7 +26,7 @@ const Categories = () => {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

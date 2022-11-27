@@ -19,7 +19,7 @@ const Category = ({ category }) => {
         <div className="card-actions justify-end">
           <Link
             to={`/category/${_id}`}
-            className="md:btn md:btn-primary text-sm md:text-base flex items-center bg-primary p-2  rounded "
+            className="btn btn-primary btn-xs md:btn-sm "
           >
             See More <FaLongArrowAltRight className="ml-1" />
           </Link>

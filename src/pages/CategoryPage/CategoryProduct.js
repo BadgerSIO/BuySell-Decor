@@ -14,7 +14,6 @@ const CategoryProduct = ({ product }) => {
     postedOn,
     sellerName,
   } = product;
-  // picture, name, location, resale price, original price, years of use, the time when it got posted, the seller's name; if the seller is verified, there will be a blue tick next to their name and a Book now button. Please note, category:/id will be a private route.
   return (
     <div>
       <div className="card card-compact w-full bg-base-100 rounded border group">
@@ -49,16 +48,16 @@ const CategoryProduct = ({ product }) => {
           </div>
           <h6>Posted on: {postedOn}</h6>
           <div className="card-actions justify-between items-center">
-            <h3>
+            <h3 className="basis-1/2">
               <span className="text-2xl text-neutral font-bold">
                 ${resalePrice}
               </span>
               <span className="line-through ml-2 text-lg">${orginalPrice}</span>
             </h3>
-            <div>
+            <div className="basis-1/2">
               <h6>Location: {location}</h6>
             </div>
-            <button className="btn btn-xs btn-accent">book now</button>
+            <button className=" btn btn-xs btn-accent ">book now</button>
           </div>
         </div>
       </div>

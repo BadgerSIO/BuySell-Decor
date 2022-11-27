@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import axios from "../../axios";
 import React from "react";
 import Loader from "../../shared/Loader/Loader";
 import BlogSection from "./Blogs/BlogSection";
@@ -10,9 +11,8 @@ const Home = () => {
   const { data: products, isLoading } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/productsAdvert`);
-      const data = await res.json();
-      return data;
+      const res = await axios.get("/productsAdvert");
+      return res.data;
     },
   });
   if (isLoading) {
@@ -22,7 +22,7 @@ const Home = () => {
     <>
       <Hero></Hero>
       <Categories></Categories>
-      {products.length > 0 ? (
+      {products?.length > 0 ? (
         <ProductSection products={products}></ProductSection>
       ) : (
         <></>

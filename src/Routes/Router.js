@@ -1,3 +1,4 @@
+import axios from "../axios";
 import Dashboard from "../layouts/Dashboard/Dashboard";
 import Addproduct from "../pages/Addproduct/Addproduct";
 import AllBuyers from "../pages/AllBuyers/AllBuyers";
@@ -29,8 +30,12 @@ const router = createBrowserRouter([
       {
         path: "/category/:id",
         loader: async ({ params }) =>
-          fetch(`http://localhost:5000/productsByCategory/${params.id}`),
-        element: <CategoryPage></CategoryPage>,
+          axios(`http://localhost:5000/productsByCategory/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <CategoryPage></CategoryPage>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/blog",

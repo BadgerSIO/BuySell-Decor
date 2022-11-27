@@ -108,8 +108,10 @@ const Header = () => {
                   </label>
                 ) : (
                   <>
-                    <ul className="hidden xl:inline-block absolute top-2/4 -translate-y-2/4">
-                      <li>{user?.displayName?.split(" ")[0]}</li>
+                    <ul className="block absolute top-3/4 ">
+                      <li className="text-xs font-bold mt-2">
+                        {user?.displayName?.split(" ")[0]}
+                      </li>
                     </ul>
                   </>
                 )}

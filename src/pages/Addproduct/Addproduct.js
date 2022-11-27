@@ -1,7 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { FaPlus } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import useVerified from "../../customHooks/useVerified";
 import Loader from "../../shared/Loader/Loader";
@@ -13,6 +15,8 @@ const Addproduct = () => {
   const [isVerified] = useVerified(user?.email);
 
   const [selectedCat, setSelectedCat] = useState(null);
+
+  const navigate = useNavigate();
 
   const { data: categories, isLoading } = useQuery({
     queryKey: ["categories"],
@@ -26,6 +30,7 @@ const Addproduct = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const addProduct = (data) => {
@@ -36,6 +41,23 @@ const Addproduct = () => {
     data["categoryId"] = selectedCat;
     data["sold"] = false;
     data["advert"] = false;
+    fetch(`http://localhost:5000/product`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Product successfully Added");
+          reset();
+          navigate("/dashboard/myProducts");
+        }
+      })
+      .catch((err) => console.log(err));
     console.log(data);
   };
   if (isLoading || loading) {
@@ -87,7 +109,7 @@ const Addproduct = () => {
               </label>
 
               <select
-                {...register("categoryId", {
+                {...register("category", {
                   required: "This field is required",
                   onChange: (e) => {
                     const index = e.target.selectedIndex;
@@ -113,9 +135,9 @@ const Addproduct = () => {
                   </option>
                 ))}
               </select>
-              {errors.categoryId && (
+              {errors.category && (
                 <p className="text-red-500">
-                  <small>{errors?.categoryId?.message}</small>
+                  <small>{errors?.category?.message}</small>
                 </p>
               )}
             </div>

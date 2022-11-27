@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { ScrollRestoration } from "react-router-dom";
 import Loader from "../../shared/Loader/Loader";
 import BlogCard from "./BlogCard";
 
@@ -30,6 +31,7 @@ const Blog = () => {
           })}
         </div>
       </div>
+      <ScrollRestoration />
     </div>
   );
 };

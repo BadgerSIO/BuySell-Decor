@@ -1,4 +1,5 @@
 import React from "react";
+import BlogSection from "./Blogs/BlogSection";
 import Categories from "./Categories/Categories";
 import Hero from "./Hero/Hero";
 
@@ -6,7 +7,10 @@ const Home = () => {
   return (
     <>
       <Hero></Hero>
-      <Categories></Categories>
+      <div className="container">
+        <Categories></Categories>
+        <BlogSection></BlogSection>
+      </div>
     </>
   );
 };

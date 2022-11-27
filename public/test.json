@@ -1,7 +1,22 @@
 [
   {
+    "question": "How does prototypical inheritance work?",
+    "image": "https://i.ibb.co/L9fTSkp/blog.webp",
+    "ans": "Every object with its methods and properties contains an internal and hidden property known as [[Prototype]]. The Prototypal Inheritance is a feature in javascript used to add methods and properties in objects. It is a method by which an object can inherit the properties and methods of another object."
+  },
+  {
     "question": "What are the different ways to manage a state in a React application?",
-    "image": "test",
-    "ans": ""
+    "image": "https://i.ibb.co/rkybZ1d/blog3.webp",
+    "ans": "Web Storage\\nIt is to store the state in the browser via web storage. This is useful when we want to persist state between reloads and reboots. Examples include cookies, local storage, and IndexedDB. These are native browser technologies.Data persisted in the browser is tied to a single browser. So, if the user loads the site in a different browser, the data will not be available.\\nWe avoid storing sensitive data in the browser since the user may access the app on a shared machine. Some examples of where web storage might be most useful include storing a user's shopping cart, saving partially completed form data or storing JWT token in HttpOnly Cookie.\\nLocal State\\nThe third option is to use store state locally. It is useful when one component needs the state. Examples include a toggle button, a form, etc.\\nLifted State\\nThe Fourth option is to define the state in the parent component. Often, the same state is used across multiple components. In those cases, it is useful to lift the state to a common parent. The lifting state is a two-step process. First, we declare the state in a common parent component, and then we pass the state down to child components via props. This pattern should be considered any time a few related components need to use the same state. The lifting state avoids duplicating states in multiple components. It helps to assure that our components all consistently reflect the same state."
+  },
+  {
+    "question": "What is a unit test? Why should we write unit tests?",
+    "image": "https://i.ibb.co/DCxwtCT/blog2.webp",
+    "ans": "The main objective of unit testing is to isolate written code to test and determine if it works as intended. Unit testing is an important step in the development process, because if done correctly, it can help detect early flaws in code which may be more difficult to find in later testing stages."
+  },
+  {
+    "question": "React vs. Angular vs. Vue?",
+    "image": "https://i.ibb.co/421JsGY/blog4.webp",
+    "ans": "React often requires extra modules and components, which keeps the core library small, but means there's extra work involved when incorporating outside tools. Angular, on the other hand, is more of a full-fledged solution that doesn't require extras like React often does, though it does have a steeper learning curve for its core compared to React.\\nVue is generally more suited to smaller, less complex apps and is easier to learn from scratch compared to React. Vue can be easier to integrate into new or existing projects and many feel its use of HTML templates along with JSX is an advantage.\\nA large library like Angular would require more diligence in keeping up with whats new, while Vue would be less demanding in this regard and the fact that the two most recent major releases of Vue are in separate repositories helps."
   }
 ]

@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
+import { MdVerified } from "react-icons/md";
 import { AuthContext } from "../../context/AuthProvider";
 import ConfirmationModal from "../../shared/ConfirmationModal/ConfirmationModal";
 import Loader from "../../shared/Loader/Loader";
@@ -69,8 +70,7 @@ const AllSellers = () => {
                   <th></th>
                   <th>Name</th>
                   <th>Email</th>
-
-                  <th>Role</th>
+                  <th>Status</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -78,9 +78,16 @@ const AllSellers = () => {
                 {sellers.map((seller, i) => (
                   <tr key={seller._id}>
                     <th>{i + 1}</th>
-                    <td>{seller?.name}</td>
+                    <td className="flex items-center">
+                      {seller?.verified ? (
+                        <MdVerified className="text-sky-500" />
+                      ) : (
+                        ""
+                      )}
+                      {seller?.name}
+                    </td>
                     <td>{seller?.email}</td>
-                    <td>{seller?.role}</td>
+                    <td>{seller?.verified ? "verified" : "unverified"}</td>
 
                     <td>
                       <label
@@ -92,10 +99,10 @@ const AllSellers = () => {
                       </label>
 
                       <button
-                        onClick={() => handleVerify(seller._id)}
+                        onClick={() => handleVerify(seller?._id)}
                         className={`btn ${
                           seller?.verified
-                            ? "bg-green-600 text-white border-none hover:bg-green-400"
+                            ? "bg-blue-500 text-white border-none hover:bg-red-500"
                             : "bg-green-500 text-white border-none hover:bg-green-400"
                         } btn-xs `}
                       >

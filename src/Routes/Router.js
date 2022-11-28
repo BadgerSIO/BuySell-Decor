@@ -11,7 +11,9 @@ import LoginRegister from "../pages/LoginRegister/LoginRegister";
 import Register from "../pages/LoginRegister/Register/Register";
 import MyOrders from "../pages/MyOrders/MyOrders";
 import MyProducts from "../pages/MyProducts/MyProducts";
+import ReportedItems from "../pages/ReportedItems/ReportedItems";
 import NotFound from "../shared/NotFound/NotFound";
+import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
 import SellerRoute from "./SellerRoute";
 
@@ -29,8 +31,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/category/:id",
-        loader: async ({ params }) =>
-          axios(`http://localhost:5000/productsByCategory/${params.id}`),
+        loader: async ({ params }) => axios(`/productsByCategory/${params.id}`),
         element: (
           <PrivateRoute>
             <CategoryPage></CategoryPage>
@@ -88,17 +89,25 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/allsellers",
         element: (
-          <SellerRoute>
+          <AdminRoute>
             <AllSellers></AllSellers>
-          </SellerRoute>
+          </AdminRoute>
         ),
       },
       {
         path: "/dashboard/allbuyers",
         element: (
-          <SellerRoute>
+          <AdminRoute>
             <AllBuyers></AllBuyers>
-          </SellerRoute>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/reportedItems",
+        element: (
+          <AdminRoute>
+            <ReportedItems></ReportedItems>
+          </AdminRoute>
         ),
       },
     ],

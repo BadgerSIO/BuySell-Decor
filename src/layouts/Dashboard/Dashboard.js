@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { FaBoxes, FaUsers, FaUserTag } from "react-icons/fa";
-import { MdAddBusiness, MdShoppingCart } from "react-icons/md";
+import { MdAddBusiness, MdReport, MdShoppingCart } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import useAdmin from "../../customHooks/useAdmin";
@@ -91,6 +91,17 @@ const Dashboard = () => {
                     }
                   >
                     <FaUsers className="md:text-xl" /> All buyers
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/reportedItems"
+                    end
+                    className={({ isActive }) =>
+                      isActive ? activeClassName : notActiveClassName
+                    }
+                  >
+                    <MdReport className="md:text-xl" /> Reported Products
                   </NavLink>
                 </li>
               </>

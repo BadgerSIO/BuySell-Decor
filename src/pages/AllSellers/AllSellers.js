@@ -87,17 +87,7 @@ const AllSellers = () => {
                       {seller?.name}
                     </td>
                     <td>{seller?.email}</td>
-                    <td>{seller?.verified ? "verified" : "unverified"}</td>
-
                     <td>
-                      <label
-                        onClick={() => setCurrent(seller)}
-                        htmlFor="confirmation-modal"
-                        className="btn btn-xs bg-accent hover:bg-red-500 border-0 text-black hover:text-white mr-2"
-                      >
-                        delete
-                      </label>
-
                       <button
                         onClick={() => handleVerify(seller?._id)}
                         className={`btn ${
@@ -108,6 +98,16 @@ const AllSellers = () => {
                       >
                         {seller?.verified ? " verfied" : " verfiy"}
                       </button>
+                    </td>
+
+                    <td>
+                      <label
+                        onClick={() => setCurrent(seller)}
+                        htmlFor="confirmation-modal"
+                        className="btn btn-xs bg-accent hover:bg-red-500 border-0 text-black hover:text-white mr-2"
+                      >
+                        delete
+                      </label>
                     </td>
                   </tr>
                 ))}

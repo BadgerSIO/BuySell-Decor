@@ -1,5 +1,3 @@
-import React from "react";
-
 const useCurrentDate = () => {
   const extract = (cDate) =>
     cDate

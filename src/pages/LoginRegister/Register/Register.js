@@ -1,19 +1,28 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider";
+import useToken from "../../../customHooks/useToken";
 
 const Register = () => {
+  const [userEmail, setUserEmail] = useState("");
+  const [token] = useToken(userEmail);
   const { signup, error, setError } = useContext(AuthContext);
   const navigate = useNavigate();
+  let location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [from, navigate, token]);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const handleRegister = (data) => {
-    console.log(data);
     const profile = {
       displayName: data.name,
       photoURL: data.photoURL,
@@ -25,6 +34,7 @@ const Register = () => {
       .then(async (res) => {
         console.log(res);
         setError("");
+
         addUserToDB(infoForDb);
       })
       .catch((err) => setError(err));
@@ -41,7 +51,7 @@ const Register = () => {
         .then((data) => {
           console.log(data);
           toast.success("User added succesfully");
-          navigate("/");
+          setUserEmail(userInfo.email);
         });
     };
   };

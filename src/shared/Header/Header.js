@@ -108,7 +108,7 @@ const Header = () => {
                   </label>
                 ) : (
                   <>
-                    <ul className="block absolute top-3/4 ">
+                    <ul className=" absolute top-3/4 left-2/4 -translate-x-2/4 ">
                       <li className="text-xs font-bold mt-2">
                         {user?.displayName?.split(" ")[0]}
                       </li>

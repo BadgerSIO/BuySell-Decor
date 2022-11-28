@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
@@ -10,14 +10,16 @@ const LoginRegister = () => {
   let location = useLocation();
   const from = location?.state?.from?.pathname || "/";
   const navigate = useNavigate();
-  if (token) {
-    navigate(from, { replace: true });
-  }
+
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [from, navigate, token]);
   const { googleSignUp } = useContext(AuthContext);
   const handleGoogle = () => {
     googleSignUp().then((res) => {
       const user = res.user;
-
       const infoForDb = {
         name: user.displayName,
         email: user.email,
@@ -26,7 +28,6 @@ const LoginRegister = () => {
         verified: false,
       };
       addUserToDB(infoForDb);
-      setUserEmail(user.email);
     });
   };
   const addUserToDB = (userInfo) => {
@@ -41,9 +42,10 @@ const LoginRegister = () => {
       .then((data) => {
         if (data.userExist) {
           toast.success(`Welcome Back ${userInfo.name}`);
-          return;
+          return setUserEmail(userInfo?.email);
         }
         toast.success("User added succesfully");
+        return setUserEmail(userInfo?.email);
       });
   };
   return (

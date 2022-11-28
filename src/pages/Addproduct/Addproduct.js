@@ -10,7 +10,7 @@ import Loader from "../../shared/Loader/Loader";
 import Titles from "../../utilities/Titles";
 
 const Addproduct = () => {
-  const { user, loading } = useContext(AuthContext);
+  const { user, loading, logout } = useContext(AuthContext);
 
   const [isVerified] = useVerified(user?.email);
 
@@ -49,7 +49,12 @@ const Addproduct = () => {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 403 || res.status === 401) {
+          return logout();
+        }
+        res.json();
+      })
       .then((data) => {
         if (data.acknowledged) {
           toast.success("Product successfully Added");

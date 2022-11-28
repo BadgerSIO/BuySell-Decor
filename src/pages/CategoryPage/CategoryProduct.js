@@ -1,7 +1,7 @@
 import React from "react";
 import { MdVerified } from "react-icons/md";
 
-const CategoryProduct = ({ product }) => {
+const CategoryProduct = ({ product, setCurrent }) => {
   const {
     name,
     resalePrice,
@@ -57,7 +57,14 @@ const CategoryProduct = ({ product }) => {
             <div className="basis-1/2">
               <h6>Location: {location}</h6>
             </div>
-            <button className=" btn btn-xs btn-accent ">book now</button>
+
+            <label
+              onClick={() => setCurrent(product)}
+              htmlFor="bookingModal"
+              className="btn btn-xs btn-accent"
+            >
+              Book Now
+            </label>
           </div>
         </div>
       </div>

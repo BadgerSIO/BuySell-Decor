@@ -28,12 +28,15 @@ const ReportedItems = () => {
     },
   });
   const deleteCurrent = (product) => {
-    fetch(`http://localhost:5000/product/${product._id}?email=${user?.email}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://buysell-decor-server.vercel.app/product/${product._id}?email=${user?.email}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount > 0) {
@@ -44,12 +47,15 @@ const ReportedItems = () => {
       });
   };
   const handleAdvert = (id) => {
-    fetch(`http://localhost:5000/product/${id}?email=${user?.email}`, {
-      method: "PUT",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://buysell-decor-server.vercel.app/product/${id}?email=${user?.email}`,
+      {
+        method: "PUT",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -58,12 +64,15 @@ const ReportedItems = () => {
   };
   // relese from report list
   const handleRelease = (id) => {
-    fetch(`http://localhost:5000/releaseProduct/${id}?email=${user?.email}`, {
-      method: "PUT",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://buysell-decor-server.vercel.app/releaseProduct/${id}?email=${user?.email}`,
+      {
+        method: "PUT",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

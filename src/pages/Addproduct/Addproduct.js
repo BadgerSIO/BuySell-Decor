@@ -21,7 +21,9 @@ const Addproduct = () => {
   const { data: categories, isLoading } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/categories`);
+      const res = await fetch(
+        `https://buysell-decor-server.vercel.app/categories`
+      );
       const data = await res.json();
       return data;
     },
@@ -41,7 +43,7 @@ const Addproduct = () => {
     data["categoryId"] = selectedCat;
     data["sold"] = false;
     data["advert"] = false;
-    fetch(`http://localhost:5000/product`, {
+    fetch(`https://buysell-decor-server.vercel.app/product`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

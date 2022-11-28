@@ -74,12 +74,12 @@ const MyOrders = () => {
                       <Link
                         to={`/dashboard/payment/${product._id}`}
                         htmlFor="confirmation-modal"
-                        disabled={product?.paid ? true : false}
+                        disabled={product?.sold ? true : false}
                         className={`btn btn-xs ${
-                          product?.paid ? "bg-green-500 " : "bg-accent"
+                          product?.sold ? "bg-green-500 " : "bg-accent"
                         }   hover:bg-green-500 border-0 text-black hover:text-white mr-2`}
                       >
-                        {product?.paid ? "paid" : "make payment"}
+                        {product?.sold ? "paid" : "make payment"}
                       </Link>
                     </td>
                   </tr>

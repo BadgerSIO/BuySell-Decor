@@ -40,7 +40,7 @@ const Register = () => {
       .catch((err) => setError(err));
 
     const addUserToDB = (userInfo) => {
-      fetch(`http://localhost:5000/users`, {
+      fetch(`https://buysell-decor-server.vercel.app/users`, {
         method: "POST",
         headers: {
           "content-type": "application/json",

@@ -36,7 +36,7 @@ const BookingModal = ({ current, setCurrent, user, logout, reportItem }) => {
     data["price"] = resalePrice;
     data["sellerEmail"] = sellerEmail;
     data["sellerContact"] = contactInfo;
-    fetch(`http://localhost:5000/booking`, {
+    fetch(`https://buysell-decor-server.vercel.app/booking`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

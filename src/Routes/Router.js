@@ -118,7 +118,9 @@ const router = createBrowserRouter([
         path: "/dashboard/payment/:id",
         element: <Payment></Payment>,
         loader: async ({ params }) =>
-          fetch(`http://localhost:5000/bookingPayment/${params.id}`),
+          fetch(
+            `https://buysell-decor-server.vercel.app/bookingPayment/${params.id}`
+          ),
       },
     ],
   },

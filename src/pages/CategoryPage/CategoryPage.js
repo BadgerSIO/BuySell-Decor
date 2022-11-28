@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import toast from "react-hot-toast";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import BookingModal from "../../shared/BookingModal/BookingModal";
 import Loader from "../../shared/Loader/Loader";
@@ -9,11 +9,14 @@ import CategoryProduct from "./CategoryProduct";
 
 const CategoryPage = () => {
   const datas = useLoaderData().data;
-  console.log(datas);
   const [current, setCurrent] = useState(null);
   const { user, loading, logout } = useContext(AuthContext);
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return <Loader></Loader>;
+  }
   const reportItem = (item) => {
-    fetch(`http://localhost:5000/reportProduct/${item._id}`, {
+    fetch(`https://buysell-decor-server.vercel.app/reportProduct/${item._id}`, {
       method: "PUT",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

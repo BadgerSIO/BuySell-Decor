@@ -31,7 +31,7 @@ const LoginRegister = () => {
     });
   };
   const addUserToDB = (userInfo) => {
-    fetch(`http://localhost:5000/users`, {
+    fetch(`https://buysell-decor-server.vercel.app/users`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

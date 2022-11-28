@@ -17,17 +17,20 @@ const AllSellers = () => {
   } = useQuery({
     queryKey: ["getuser"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/getuser?role=seller", {
-        headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        },
-      });
+      const res = await fetch(
+        "https://buysell-decor-server.vercel.app/getuser?role=seller",
+        {
+          headers: {
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
       const data = await res.json();
       return data;
     },
   });
   const deleteCurrent = (ctuser) => {
-    fetch(`http://localhost:5000/deleteuser/${ctuser._id}`, {
+    fetch(`https://buysell-decor-server.vercel.app/deleteuser/${ctuser._id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -43,12 +46,15 @@ const AllSellers = () => {
       });
   };
   const handleVerify = (id) => {
-    fetch(`http://localhost:5000/user/${id}?email=${user?.email}`, {
-      method: "PUT",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://buysell-decor-server.vercel.app/user/${id}?email=${user?.email}`,
+      {
+        method: "PUT",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

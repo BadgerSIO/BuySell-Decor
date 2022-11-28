@@ -53,9 +53,10 @@ const Addproduct = () => {
         if (res.status === 403 || res.status === 401) {
           return logout();
         }
-        res.json();
+        return res.json();
       })
       .then((data) => {
+        console.log(data);
         if (data.acknowledged) {
           toast.success("Product successfully Added");
           reset();

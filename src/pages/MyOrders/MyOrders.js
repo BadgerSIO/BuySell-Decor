@@ -5,9 +5,11 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 import Loader from "../../shared/Loader/Loader";
 import Titles from "../../utilities/Titles";
+import { Link, useNavigate } from "react-router-dom";
 
 const MyOrders = () => {
   const { user, loading } = useContext(AuthContext);
+
   const {
     data: products,
     isLoading,
@@ -69,7 +71,8 @@ const MyOrders = () => {
                     <td>{product?.sold ? "sold" : "available"}</td>
 
                     <td>
-                      <label
+                      <Link
+                        to={`/dashboard/payment/${product._id}`}
                         htmlFor="confirmation-modal"
                         disabled={product?.paid ? true : false}
                         className={`btn btn-xs ${
@@ -77,7 +80,7 @@ const MyOrders = () => {
                         }   hover:bg-green-500 border-0 text-black hover:text-white mr-2`}
                       >
                         {product?.paid ? "paid" : "make payment"}
-                      </label>
+                      </Link>
                     </td>
                   </tr>
                 ))}

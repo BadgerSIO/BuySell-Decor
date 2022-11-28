@@ -1,5 +1,6 @@
 import axios from "../axios";
 import Dashboard from "../layouts/Dashboard/Dashboard";
+import Payment from "../layouts/Dashboard/Payment";
 import Addproduct from "../pages/Addproduct/Addproduct";
 import AllBuyers from "../pages/AllBuyers/AllBuyers";
 import AllSellers from "../pages/AllSellers/AllSellers";
@@ -12,6 +13,7 @@ import Register from "../pages/LoginRegister/Register/Register";
 import MyOrders from "../pages/MyOrders/MyOrders";
 import MyProducts from "../pages/MyProducts/MyProducts";
 import ReportedItems from "../pages/ReportedItems/ReportedItems";
+import DisplayErrors from "../shared/DisplayErrors/DisplayErrors";
 import NotFound from "../shared/NotFound/NotFound";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
@@ -24,6 +26,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <DisplayErrors></DisplayErrors>,
     children: [
       {
         path: "/",
@@ -60,6 +63,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
+    errorElement: <DisplayErrors></DisplayErrors>,
     element: (
       <PrivateRoute>
         <Dashboard></Dashboard>
@@ -109,6 +113,12 @@ const router = createBrowserRouter([
             <ReportedItems></ReportedItems>
           </AdminRoute>
         ),
+      },
+      {
+        path: "/dashboard/payment/:id",
+        element: <Payment></Payment>,
+        loader: async ({ params }) =>
+          fetch(`http://localhost:5000/bookingPayment/${params.id}`),
       },
     ],
   },

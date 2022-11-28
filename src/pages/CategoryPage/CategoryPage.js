@@ -1,6 +1,10 @@
 import { useContext, useState } from "react";
 import toast from "react-hot-toast";
-import { useLoaderData, useNavigation } from "react-router-dom";
+import {
+  ScrollRestoration,
+  useLoaderData,
+  useNavigation,
+} from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import BookingModal from "../../shared/BookingModal/BookingModal";
 import Loader from "../../shared/Loader/Loader";
@@ -56,6 +60,7 @@ const CategoryPage = () => {
             reportItem={reportItem}
           ></BookingModal>
         )}
+        <ScrollRestoration />
       </section>
     );
   } else {

@@ -64,7 +64,7 @@ const MyProducts = () => {
     return (
       <section>
         <div>
-          <Titles>My Products{products?.length}</Titles>
+          <Titles>My Products</Titles>
           <div className="overflow-x-auto">
             <table className="table w-full">
               <thead>

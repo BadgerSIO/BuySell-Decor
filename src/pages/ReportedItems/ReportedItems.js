@@ -85,7 +85,7 @@ const ReportedItems = () => {
     return (
       <section>
         <div>
-          <Titles>Reported Products{products?.length}</Titles>
+          <Titles>Reported Products</Titles>
           <div className="overflow-x-auto">
             <table className="table w-full">
               <thead>

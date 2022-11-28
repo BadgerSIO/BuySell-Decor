@@ -32,7 +32,7 @@ const MyOrders = () => {
     return (
       <section>
         <div>
-          <Titles>My Orders{products?.length}</Titles>
+          <Titles>My Orders</Titles>
           <div className="overflow-x-auto">
             <table className="table w-full">
               <thead>

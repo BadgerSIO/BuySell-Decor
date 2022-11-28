@@ -22,9 +22,7 @@ const Blog = () => {
         <p className="text-center">
           Home\<span className="text-primary">Blogs</span>
         </p>
-        <h1 className="text-5xl font-semibold py-5 text-center">
-          Blogs{blogs.length}
-        </h1>
+        <h1 className="text-5xl font-semibold py-5 text-center">Blogs</h1>
         <div className="">
           {blogs.map((blog) => {
             return <BlogCard key={blog._id} blog={blog}></BlogCard>;

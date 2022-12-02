@@ -11,12 +11,12 @@ const ProductAdvertCard = ({ product }) => {
     condition,
   } = product;
   return (
-    <div className="card card-compact w-full bg-base-100 rounded border">
-      <figure>
+    <div className="card card-compact w-full bg-base-100 rounded border  group">
+      <figure className="overflow-hidden">
         <img
           src={productPhoto}
           alt={name}
-          className="w-full h-72 lg:h-80 object-cover"
+          className="w-full h-72 lg:h-80 object-cover group-hover:scale-110 transition-transform"
         />
       </figure>
       <div className="card-body">

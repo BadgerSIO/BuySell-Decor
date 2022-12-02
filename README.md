@@ -25,4 +25,5 @@ This is a second hand buy sell furniture website. Here you create account as sel
 
 ### Admin pass
 
-If your are interested to see the admin features let me know
+admin:user1@gmail.com
+pass:user1@gmail.com

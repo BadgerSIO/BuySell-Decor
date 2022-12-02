@@ -4,7 +4,7 @@ This is a second hand buy sell furniture website. Here you create account as sel
 
 ### Website Link: "https://buysell-decor.web.app/"
 
-### Server side repo link: "https://github.com/programming-hero-web-course-4/b612-used-products-resale-server-side-BadgerSIO"
+### Server side repo link: "https://github.com/BadgerSIO/BuySell-Decor-Server"
 
 ### Technologies used for building this website and website functionalities.
 
@@ -25,4 +25,4 @@ This is a second hand buy sell furniture website. Here you create account as sel
 
 ### Admin pass
 
-Hidden
+If your are interested to see the admin features let me know

@@ -64,7 +64,7 @@ const Header = () => {
               {navlinks}
             </ul>
           </div>
-          <Link className="font-bold">
+          <Link to="/" className="font-bold">
             <span className="text-primary">BuySell</span> Decor
           </Link>
         </div>

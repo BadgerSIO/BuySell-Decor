@@ -12,10 +12,10 @@ const AllBuyers = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["getuser"],
+    queryKey: ["getbuyers"],
     queryFn: async () => {
       const res = await fetch(
-        "https://buysell-decor-server.vercel.app/getuser?role=buyer",
+        "https://buysell-decor-server.vercel.app/getbuyers?role=buyer",
         {
           headers: {
             authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -26,6 +26,7 @@ const AllBuyers = () => {
       return data;
     },
   });
+
   const deleteCurrent = (ctuser) => {
     fetch(`https://buysell-decor-server.vercel.app/deleteuser/${ctuser._id}`, {
       method: "DELETE",
@@ -58,7 +59,6 @@ const AllBuyers = () => {
                   <th></th>
                   <th>Name</th>
                   <th>Email</th>
-
                   <th>Role</th>
                   <th>Action</th>
                 </tr>

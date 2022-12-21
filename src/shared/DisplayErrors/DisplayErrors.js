@@ -17,7 +17,7 @@ const DisplayErrors = () => {
         <p className="text-lg md:text-xl text-center">
           {error.statusText || error.message}
         </p>
-        <p>
+        <p className="text-center">
           Please Try{" "}
           <span
             onClick={logoutt}

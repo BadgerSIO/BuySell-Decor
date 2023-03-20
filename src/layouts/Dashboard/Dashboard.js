@@ -40,7 +40,7 @@ const Dashboard = () => {
                   isActive ? activeClassName : notActiveClassName
                 }
               >
-                <MdShoppingCart className="md:text-xl" /> My Orders
+                <MdShoppingCart className="md:text-xl" /> My Bookings
               </NavLink>
             </li>
             {(isSeller || isAdmin) && (

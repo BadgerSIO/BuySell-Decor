@@ -14,12 +14,6 @@ const BookingModal = ({ current, setCurrent, user, logout, reportItem }) => {
     orginalPrice,
     productPhoto,
     contactInfo,
-    sellerVerified,
-    condition,
-    location,
-    usageTime,
-    postedOn,
-    sellerName,
     sellerEmail,
     description,
   } = current;
@@ -32,7 +26,7 @@ const BookingModal = ({ current, setCurrent, user, logout, reportItem }) => {
     data["productName"] = name;
     data["productImage"] = productPhoto;
     data["productId"] = _id;
-    data["bookingTime"] = currentTime;
+    data["bookingTime"] = Date.now();
     data["price"] = resalePrice;
     data["sellerEmail"] = sellerEmail;
     data["sellerContact"] = contactInfo;

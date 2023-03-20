@@ -1,11 +1,13 @@
 import axios from "../axios";
 import Dashboard from "../layouts/Dashboard/Dashboard";
 import Payment from "../layouts/Dashboard/Payment";
+import PaymentSuccess from "../layouts/Dashboard/PaymentSuccess";
 import Addproduct from "../pages/Addproduct/Addproduct";
 import AllBuyers from "../pages/AllBuyers/AllBuyers";
 import AllSellers from "../pages/AllSellers/AllSellers";
 import Blog from "../pages/Blog/Blog";
 import CategoryPage from "../pages/CategoryPage/CategoryPage";
+import CheckoutPage from "../pages/CheckoutPage/CheckoutPage";
 import Home from "../pages/Home/Home";
 import Login from "../pages/LoginRegister/Login/Login";
 import LoginRegister from "../pages/LoginRegister/LoginRegister";
@@ -116,11 +118,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/payment/:id",
-        element: <Payment></Payment>,
+        element: <CheckoutPage />,
         loader: async ({ params }) =>
           fetch(
             `https://buysell-decor-server.vercel.app/bookingPayment/${params.id}`
           ),
+      },
+      {
+        path: "/dashboard/paymentSuccess",
+        element: <PaymentSuccess />,
       },
     ],
   },

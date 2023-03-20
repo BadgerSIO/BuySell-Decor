@@ -5,7 +5,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 import Loader from "../../shared/Loader/Loader";
 import Titles from "../../utilities/Titles";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const MyOrders = () => {
   const { user, loading } = useContext(AuthContext);
@@ -28,7 +28,7 @@ const MyOrders = () => {
 
   if (loading || isLoading) {
     return <Loader></Loader>;
-  } else if (products.length > 0) {
+  } else if (products?.length > 0) {
     return (
       <section>
         <div>

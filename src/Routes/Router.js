@@ -15,6 +15,7 @@ import Register from "../pages/LoginRegister/Register/Register";
 import MyOrders from "../pages/MyOrders/MyOrders";
 import MyProducts from "../pages/MyProducts/MyProducts";
 import ReportedItems from "../pages/ReportedItems/ReportedItems";
+import SingleProduct from "../pages/SingleProduct.js/SingleProduct";
 import DisplayErrors from "../shared/DisplayErrors/DisplayErrors";
 import NotFound from "../shared/NotFound/NotFound";
 import AdminRoute from "./AdminRoute";
@@ -60,6 +61,17 @@ const router = createBrowserRouter([
             element: <Register></Register>,
           },
         ],
+      },
+      {
+        path: "/product/:id",
+        loader: async ({ params }) =>
+          axios(`/product/${params.id}`, {
+            headers: {
+              "Content-Type": "application/json",
+              authorization: `bearer ${localStorage.getItem("accessToken")}`,
+            },
+          }),
+        element: <SingleProduct />,
       },
     ],
   },

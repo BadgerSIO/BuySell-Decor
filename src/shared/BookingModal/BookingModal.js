@@ -2,11 +2,11 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { MdBookmarkAdd, MdClose } from "react-icons/md";
-import useCurrentDate from "../../customHooks/useCurrentDate";
+import { useNavigate } from "react-router-dom";
 
 const BookingModal = ({ current, setCurrent, user, logout, reportItem }) => {
   const { displayName, email } = user;
-  const currentTime = useCurrentDate();
+  const navigate = useNavigate();
   const {
     _id,
     name,
@@ -49,6 +49,7 @@ const BookingModal = ({ current, setCurrent, user, logout, reportItem }) => {
         if (data.acknowledged) {
           toast.success("Product Booked !");
           setCurrent(null);
+          navigate("/dashboard");
         }
       })
       .catch((err) => console.log(err));
@@ -66,7 +67,7 @@ const BookingModal = ({ current, setCurrent, user, logout, reportItem }) => {
               <img
                 src={productPhoto}
                 alt={name}
-                className="w-full h-60 lg:h-full object-cover"
+                className="w-full h-60 lg:h-full object-contain "
               />
             </figure>
             <div className="w-full lg:w-2/4 p-5 lg:p-10">

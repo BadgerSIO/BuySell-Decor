@@ -1,8 +1,10 @@
 import React from "react";
 import { MdVerified } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
-const ProductAdvertCard = ({ product }) => {
+const ProductAdvertCard = ({ product, userIsLogged }) => {
   const {
+    _id,
     name,
     resalePrice,
     orginalPrice,
@@ -10,6 +12,14 @@ const ProductAdvertCard = ({ product }) => {
     sellerVerified,
     condition,
   } = product;
+  const navigate = useNavigate();
+  const handleNavigate = () => {
+    if (userIsLogged) {
+      return navigate(`/product/${_id}`);
+    }
+    navigate("/login");
+    console.log(name);
+  };
   return (
     <div className="card card-compact w-full bg-base-100 rounded border  group">
       <figure className="overflow-hidden">
@@ -43,6 +53,12 @@ const ProductAdvertCard = ({ product }) => {
             <span className="line-through ml-2 text-lg">${orginalPrice}</span>
           </h3>
         </div>
+        <button
+          onClick={handleNavigate}
+          className="btn btn-outline btn-sm w-max  "
+        >
+          See details
+        </button>
       </div>
     </div>
   );

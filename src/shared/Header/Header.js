@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
+  MdAddBusiness,
   MdLogout,
   MdOutlineDashboardCustomize,
   MdOutlineSpaceDashboard,
@@ -9,8 +10,13 @@ import { AuthContext } from "../../context/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import axios from "../../axios";
 import Loader from "../Loader/Loader";
+import { FaBoxes } from "react-icons/fa";
+import useSeller from "../../customHooks/useSeller";
+import useAdmin from "../../customHooks/useAdmin";
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
+  const [isSeller] = useSeller(user?.email);
+  const [isAdmin] = useAdmin(user?.email);
   const { data: categories, isLoading } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
@@ -19,6 +25,8 @@ const Header = () => {
     },
   });
   const [showDropdown, setShowDropdown] = useState(false);
+  const location = useLocation();
+  let pathname = location.pathname.split("/")[1];
 
   const handleHover = () => {
     setShowDropdown(true);
@@ -54,13 +62,24 @@ const Header = () => {
           </li>
         );
       })}
+      <li>
+        {location.pathname === "/" ? (
+          <a href="#reviews" className={notActiveClassName}>
+            Reviews
+          </a>
+        ) : (
+          <Link to="/#reviews" className={notActiveClassName}>
+            Reviews
+          </Link>
+        )}
+      </li>
     </>
   );
   const categoryLinks = (
     <li
       onMouseEnter={handleHover}
       onMouseLeave={handleLeave}
-      className="group hover:bg-accent text-sm hover:text-neutral rounded-md py-2 px-3  font-semibold capitalize lg:mr-2 mb-2 lg:mb-0"
+      className="group hover:bg-accent text-sm hover:text-neutral rounded-md py-2 pt-[10px] px-3  font-semibold capitalize lg:mr-2 mb-2 lg:mb-0"
     >
       Categories
       <ul
@@ -80,17 +99,19 @@ const Header = () => {
       </ul>
     </li>
   );
-  const location = useLocation();
-  let pathname = location.pathname.split("/")[1];
+
   if (isLoading) {
     return <Loader />;
   }
   return (
-    <div className=" border-b border-gray-100 h-[8vh]">
-      <div className="navbar bg-base-100">
+    <div className=" border-b border-gray-100 h-[8vh] flex items-center">
+      <div className="navbar bg-base-100 p-0">
         <div className="navbar-start">
           <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+            <label
+              tabIndex={0}
+              className="mr-5 inline-block lg:hidden cursor-pointer p-2 border rounded-md hover:bg-primary/20"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -114,7 +135,7 @@ const Header = () => {
               {categoryLinks}
             </ul>
           </div>
-          <Link to="/" className="font-bold">
+          <Link to="/" className="font-bold text-sm lg:text-xl">
             <span className="text-primary">BuySell</span> Decor
           </Link>
         </div>
@@ -140,11 +161,42 @@ const Header = () => {
                   tabIndex={0}
                   className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
                 >
+                  <div className="w-[60px] rounded-full mx-auto mt-3 mb-2 ">
+                    <img
+                      src={user?.photoURL}
+                      alt=""
+                      className="w-[70px] rounded-full mx-auto ring-offset-4 ring-2"
+                    />
+                  </div>
+                  <h2 className="text-sm text-center capitalize ">
+                    {user?.displayName}
+                  </h2>
+                  <hr className="my-3" />
                   <li>
                     <Link className="justify-start" to="/dashboard">
                       <MdOutlineSpaceDashboard /> Dashboard
                     </Link>
                   </li>
+                  {(isAdmin || isSeller) && (
+                    <>
+                      <li>
+                        <Link
+                          className="justify-start"
+                          to="/dashboard/addProduct"
+                        >
+                          <MdAddBusiness /> Add Product
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          className="justify-start"
+                          to="/dashboard/myProducts"
+                        >
+                          <FaBoxes /> My Products
+                        </Link>
+                      </li>
+                    </>
+                  )}
 
                   <li onClick={logout}>
                     <button>
@@ -152,21 +204,13 @@ const Header = () => {
                     </button>
                   </li>
                 </ul>
-                {pathname === "dashboard" ? (
+                {pathname === "dashboard" && (
                   <label
                     htmlFor="dashboard"
                     className=" lg:hidden inline-block "
                   >
                     <MdOutlineDashboardCustomize className="text-3xl cursor-pointer" />
                   </label>
-                ) : (
-                  <>
-                    <ul className=" absolute top-3/4 left-2/4 -translate-x-2/4 ">
-                      <li className="text-xs font-bold mt-2">
-                        {user?.displayName?.split(" ")[0]}
-                      </li>
-                    </ul>
-                  </>
                 )}
               </div>
             ) : (

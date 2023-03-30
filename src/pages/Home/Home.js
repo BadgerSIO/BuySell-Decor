@@ -6,6 +6,7 @@ import BlogSection from "./Blogs/BlogSection";
 import Categories from "./Categories/Categories";
 import Hero from "./Hero/Hero";
 import ProductSection from "./ProductSection/ProductSection";
+import CustomerReviews from "./CustomerReviews/CustomerReviews";
 
 const Home = () => {
   const { data: products, isLoading } = useQuery({
@@ -27,7 +28,7 @@ const Home = () => {
       ) : (
         <></>
       )}
-
+      <CustomerReviews />
       <BlogSection></BlogSection>
     </>
   );

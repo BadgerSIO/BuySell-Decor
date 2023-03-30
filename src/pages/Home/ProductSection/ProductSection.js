@@ -19,7 +19,7 @@ const ProductSection = ({ products }) => {
   const btnStyle =
     "inline-block sm:p-3 sm:border border-gray-300 hover:bg-primary hover:text-white text-xl rounded transition-colors duration-300";
   return (
-    <section className="pb-8 md:pb-16 lg:pb-20">
+    <section className="py-8 md:py-16 lg:py-20 bg-accent">
       <div className="container">
         <div className="flex justify-between">
           <Titles>Best from sellers</Titles>

@@ -1,19 +1,7 @@
 import React from "react";
 
 const ProductInfo = ({ info }) => {
-  const {
-    bookingTime,
-    contactInfo,
-    customerEmail,
-    customerName,
-    location,
-    price,
-    productId,
-    productImage,
-    productName,
-    sellerContact,
-    sellerEmail,
-  } = info;
+  const { price, productImage, productName } = info;
   return (
     <div className="bg-white p-5 rounded-md">
       <h2 className="text-xl pb-5 mb-5 border-b">Your Order</h2>

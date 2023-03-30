@@ -6,7 +6,6 @@ import ProductInfo from "./ProductInfo";
 
 const CheckoutPage = () => {
   const product = useLoaderData();
-  console.log(product);
   const {
     bookingTime,
     contactInfo,

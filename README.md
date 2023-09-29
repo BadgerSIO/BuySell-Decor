@@ -25,5 +25,5 @@ This is a second hand buy sell furniture website. Here you create account as sel
 
 ### Admin pass
 
-admin:user1@gmail.com
-pass:user1@gmail.com
+admin:admin@saadportfolio.xyz
+pass:admin@saadportfolio.xyz

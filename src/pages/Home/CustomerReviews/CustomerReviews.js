@@ -28,7 +28,7 @@ const CustomerReviews = () => {
   }
   return (
     <section id="reviews" className="py-8 md:py-16 lg:py-20 ">
-      <div className="container">
+      <div className="container text-center">
         <Titles>Customer Reviews</Titles>
         <div className=" mt-10 relative">
           <AiOutlineSwapLeft

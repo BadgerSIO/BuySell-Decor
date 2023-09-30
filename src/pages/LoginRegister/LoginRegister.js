@@ -49,7 +49,7 @@ const LoginRegister = () => {
       });
   };
   return (
-    <div className="h-[86vh]">
+    <div className="py-10">
       <div className="container flex justify-center items-center h-full">
         <div className="p-5 md:p-10 border border-primary/30 w-full md:w-[500px] ">
           <Outlet></Outlet>

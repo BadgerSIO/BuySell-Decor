@@ -104,7 +104,7 @@ const Header = () => {
     return <Loader />;
   }
   return (
-    <div className=" border-b border-gray-100 h-[8vh] flex items-center">
+    <div className=" border-b border-gray-100  flex items-center">
       <div className="navbar bg-base-100 p-0">
         <div className="navbar-start">
           <div className="dropdown">
